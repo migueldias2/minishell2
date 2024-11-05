@@ -15,7 +15,7 @@ int	find_pipe(char **tokens)
 	return (-1);
 }
 
-int	find_redirection(char **tokens)
+/* int	find_redirection(char **tokens)
 {
 	int	i;
 
@@ -30,4 +30,4 @@ int	find_redirection(char **tokens)
 		i++;
 	}
 	return (-1);
-}
+} */

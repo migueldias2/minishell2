@@ -25,17 +25,22 @@
 
 # define BUFFER_SIZE 1024
 
+typedef struct s_redirection
+{
+	int					type;
+	char				*target;
+	struct s_redirection *next;
+} t_redirection;
 
 //define node structure of the AST
 typedef struct s_ast_node
 {
-	int		type;//	Type of node
-	char	*cmd; //used for command nodes
-	char	**args; //arguments for command nodes
-	char	*file; //in case of redirections
-	char	*delimiter; // for here documents
-	struct s_ast_node *left;
-	struct s_ast_node *right;
+	int					type;//	Type of node
+	char				*cmd; //used for command nodes
+	char				**args; //arguments for command nodes
+	t_redirection 		*redirs;
+	struct s_ast_node 	*left;
+	struct s_ast_node 	*right;
 } t_ast_node;
 
 t_ast_node	*parse_tokens(char **tokens);
@@ -76,7 +81,7 @@ int		semicolon_checker(char *str);
 char	**expand_vars(char **new_tokens, char **env_copy);
 void	execute_ast(t_ast_node *node);
 t_ast_node	*parse_tokens(char **tokens);
-void	here_doc(char *str);
+int		here_doc(char *str);
 char	*get_path(char *cmd);
 char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);

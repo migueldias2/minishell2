@@ -1,7 +1,7 @@
 
 #include "minishell.h"
 
-void	here_doc(char *str)
+int	here_doc(char *str)
 {
 	char	buffer[BUFFER_SIZE];
 	int		fd;
@@ -12,6 +12,7 @@ void	here_doc(char *str)
 		perror("error failed to open");
 	while (1)
 	{
+		/* write(STDOUT_FILENO, "> ", 2); */
 		bytes_read = read(STDIN_FILENO, buffer, BUFFER_SIZE - 1);
 		if (bytes_read < 0)
 			perror("error read");
@@ -25,7 +26,6 @@ void	here_doc(char *str)
 	}
 	close(fd);
 	fd = open("temp.txt", O_RDONLY);
-	dup2(fd, STDIN_FILENO);
 	unlink("temp.txt");
-	close(fd);
+	return (fd);
 }
