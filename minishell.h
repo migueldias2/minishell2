@@ -47,6 +47,7 @@ t_ast_node	*parse_tokens(char **tokens);
 char		**slice_tokens(char **tokens, int i, int end);
 int			find_redirection(char **tokens);
 int			find_pipe(char **tokens);
+void		free_ast(t_ast_node *node);
 
 
 // estrutura para expand_vars.c

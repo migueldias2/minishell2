@@ -22,9 +22,22 @@ static int	fill_sliced(char **sliced, int *count, char **tokens, int *i)
 	return (1);
 }
 
+void	free_sliced(char **sliced, int count)
+{
+	int	j;
+
+	j = 0;
+	while (j < count)
+	{
+		free(sliced[j]);
+		j++;
+	}
+	free(sliced);
+}
 char	**slice_tokens(char **tokens, int i, int end)
 {
-	int count;
+	int	count;
+	int	n_free;
 	char **sliced;
 
 	count = i;
@@ -34,6 +47,7 @@ char	**slice_tokens(char **tokens, int i, int end)
 			count++;
 		end = count;
 	}
+	n_free = end - i + 1;
 	sliced = malloc((end - i + 1) * sizeof(char *));
 	if (!sliced)
 		return NULL;
@@ -41,7 +55,10 @@ char	**slice_tokens(char **tokens, int i, int end)
 	while (i < end)
 	{
 		if (!fill_sliced(sliced, &count, tokens, &i))
+		{
+			free_sliced(sliced, n_free);
 			return (NULL);
+		}
 	}
 	sliced[count] = NULL;
 	return sliced;

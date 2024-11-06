@@ -144,7 +144,7 @@ t_ast_node	*parse_tokens(char **tokens)
 	{
     	redir_type = get_redir_type(tokens[i]);
     	if (redir_type == HEREDOC)
-		{  
+		{
         	if (tokens[i + 1] == NULL)
             	perror("Syntax error: missing file for redirection");
         	if (!node)
@@ -160,13 +160,13 @@ t_ast_node	*parse_tokens(char **tokens)
 	{
     	redir_type = get_redir_type(tokens[i]);
     	if (redir_type != -1)
-		{  
+		{
         	if (tokens[i + 1] == NULL)
             	perror("Syntax error: missing file for redirection");
 			if (!node)
 				node = new_ast_node(CMD, NULL, NULL);
             add_redirection(node, redir_type, tokens[i + 1]);
-            i += 2;  
+            i += 2;
     	}
 		else
 			i++;
@@ -192,7 +192,7 @@ t_ast_node	*parse_tokens(char **tokens)
 		{
 			node->cmd = tokens[cmd_index];
 			node->args = filter(slice_tokens(tokens, cmd_index, -1));
-		} 
+		}
 	}
 	return node;
 }

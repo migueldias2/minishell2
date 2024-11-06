@@ -18,13 +18,11 @@ int main(int argc, char *argv[], char *env[])
 	environ = env;
 
 	(void)argc, (void)argv;
-	/* char	**env_copy; */
-	char	*input = NULL;
-	/* char	**tokens; */
-	char	**new_tokens = NULL;
-	char	**exp_tokens = NULL;
-	t_ast_node *ast_root = NULL;
-	int		i = 0;
+	char		*input = NULL;
+	char		**new_tokens = NULL;
+	char		**exp_tokens = NULL;
+	t_ast_node 	*ast_root = NULL;
+	int			i = 0;
 
 	/* env_copy = copy_env_vars(env); */
 	/* signal(SIGINT, handle_sigint); */
@@ -67,10 +65,9 @@ int main(int argc, char *argv[], char *env[])
 		{
 			perror("Error semicolon not supported");
 			free(input);
-            continue ;
+			continue ;
 		}
 		i = 0;
-
 		new_tokens = tokenize(input);
 		if (!new_tokens)
 		{
@@ -78,37 +75,19 @@ int main(int argc, char *argv[], char *env[])
     		perror("Error in tokenize");
     		continue;
 		}
-		/* while (new_tokens[i] != NULL)
-        {
-			printf("token[%d]: %s \n",i ,new_tokens[i]);
-			i++;
-		} */
-		/* printf("\n"); */
-        i = 0;
-        exp_tokens = expand_vars(new_tokens, environ);
+		i = 0;
+		exp_tokens = expand_vars(new_tokens, environ);
 		if (!exp_tokens)
 		{
 			free_all(new_tokens, input);
 			perror("Error in expand_vars");
 			continue;
 		}
-        /* while (exp_tokens[i] != NULL)
-        {
-			printf("token[%d]: %s \n",i ,exp_tokens[i]);
-			i++;
-		} */
-		//build the AST
 		ast_root = parse_tokens(exp_tokens);
 		execute_ast(ast_root);
-		//free_ast(ast_root);
-        free_all(exp_tokens, input);
-    }
-    /* i = 0;
-    while (env_copy[i])
-    {
-        free(env_copy[i++]);
-    }
-    free(env_copy); */
-    return (0);
+		free_ast(ast_root);
+		free_all(exp_tokens, input);
+	}
+	return (0);
 }
 
