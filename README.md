@@ -12,3 +12,17 @@ zsh: segmentation fault (core dumped)  ./a.out
 
 
 3) echo >>outfile >>outfile >>outfile should only add one time
+
+
+4) <<ola
+ola
+==105423== Invalid read of size 1
+==105423==    at 0x484ED16: strlen (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==105423==    by 0x402C4D: ft_strjoin (ft_strjoin.c:24)
+==105423==    by 0x402EB1: get_path (get_path.c:55)
+==105423==    by 0x401C58: exec (execute_ast.c:10)
+==105423==    by 0x40208A: execute_ast (execute_ast.c:143)
+==105423==    by 0x40329F: main (main.c:89)
+==105423==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+==105423== 
+==105423== 
