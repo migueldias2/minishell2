@@ -26,3 +26,28 @@ ola
 ==105423==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
 ==105423== 
 ==105423== 
+
+
+
+./a.out
+==118409== Memcheck, a memory error detector
+==118409== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==118409== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==118409== Command: ./a.out
+==118409== 
+minishell> 
+minishell> 
+minishell> 
+minishell> 
+minishell> 
+minishell> 
+minishell> 
+minishell> 
+exit
+==118409== 
+==118409== HEAP SUMMARY:
+==118409==     in use at exit: 204,405 bytes in 222 blocks
+==118409==   total heap usage: 470 allocs, 248 frees, 241,754 bytes allocated
+==118409== 
+==118409== LEAK SUMMARY:
+==118409==    definitely lost: 240 bytes in 1 blocks
