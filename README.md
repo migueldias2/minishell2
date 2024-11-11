@@ -29,7 +29,7 @@ ola
 
 
 
-./a.out
+5)./a.out
 ==118409== Memcheck, a memory error detector
 ==118409== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
 ==118409== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
